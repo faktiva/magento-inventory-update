@@ -5,12 +5,12 @@ ini_set('display_errors', 'on');
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__.'/log/products_update.log');
 
-require_once __DIR__.'/../../shell/abstract.php';
+require_once __DIR__.'/abstract.php';
 
 /**
- * Ciesse Inventoryupdate Shell Script.
+ * Inventory update shell script.
  *
- * @author "Emiliano Gabrielli" emiliano.gabrielli@gmail.com
+ * @author "Emiliano Gabrielli" <emiliano.gabrielli@gmail.com>
  */
 class Shell_Inventory_Update extends Mage_Shell_Abstract
 {
