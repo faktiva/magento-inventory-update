@@ -1,0 +1,34 @@
+{
+    "name": "just4testing/magento-inventory-update",
+    "description": "A simple Magento shell script to update products attributes such as quantity, availability and so on",
+    "type": "project",
+    "homepage": "https://github.com/just4testing/magento-inventory-update",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Emiliano Gabrielli",
+            "email": "emiliano.gabrielli@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "stable",
+    "config": {
+        "github-protocols": ["https"],
+        "archive-format": "zip",
+        "platform": {"php": "5.4.0"},
+        "optimize-autoloader": true
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php -r 'mkdir(__DIR__.\"/httpdocs/shell\", 0777, true);'",
+            "php -r 'chdir(__DIR__.\"/httpdocs/shell/\"); @symlink(\"inventory_update.php\", \"inventory_update.php\");'"
+        ]
+    },
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^1.11",
+        "symfony/var-dumper": "^2.8|^3.0"
+    }
+}
