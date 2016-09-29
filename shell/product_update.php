@@ -12,7 +12,7 @@ require_once __DIR__.'/../../shell/abstract.php';
  *
  * @author "Emiliano Gabrielli" emiliano.gabrielli@gmail.com
  */
-class Ciesse_Shell_InventoryUpdate extends Mage_Shell_Abstract
+class Shell_Inventory_Update extends Mage_Shell_Abstract
 {
     const CSV_DELIMITER = ',';
     const CSV_ENCLOSURE = '"';
@@ -80,5 +80,5 @@ USAGE;
     }
 }
 
-$shell = new Ciesse_Shell_InventoryUpdate();
+$shell = new Shell_Inventory_Update();
 $shell->run();
