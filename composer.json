@@ -1,13 +1,13 @@
 {
-    "name": "just4testing/magento-inventory-update",
+    "name": "faktiva/magento-inventory-update",
     "description": "A simple Magento shell script to update products attributes such as quantity, availability and so on",
     "type": "project",
-    "homepage": "https://github.com/just4testing/magento-inventory-update",
+    "homepage": "https://github.com/faktiva/magento-inventory-update",
     "license": "MIT",
     "authors": [
         {
             "name": "Emiliano Gabrielli",
-            "email": "emiliano.gabrielli@gmail.com",
+            "email": "AlberT@faktiva.com",
             "role": "Developer"
         }
     ],
@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "J4T\\MagentoInventoryUpdate\\": ""
+            "Faktiva\\MagentoInventoryUpdate\\": ""
         }
     }
 }

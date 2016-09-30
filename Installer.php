@@ -1,6 +1,6 @@
 <?php
 
-namespace J4T\MagentoInventoryUpdate;
+namespace Faktiva\MagentoInventoryUpdate;
 
 use Composer\Script\Event;
 

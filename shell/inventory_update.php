@@ -12,7 +12,7 @@ require_once __DIR__.'/abstract.php';
  *
  * @author "Emiliano Gabrielli" <emiliano.gabrielli@gmail.com>
  */
-class Shell_Inventory_Update extends Mage_Shell_Abstract
+class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
 {
     const CSV_DELIMITER = ',';
     const CSV_ENCLOSURE = '"';
@@ -80,5 +80,5 @@ USAGE;
     }
 }
 
-$shell = new Shell_Inventory_Update();
+$shell = new Faktiva_Shell_Inventory_Update();
 $shell->run();
