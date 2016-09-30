@@ -21,7 +21,7 @@
     "scripts": {
         "post-install-cmd": [
             "php -r 'mkdir(__DIR__.\"/httpdocs/shell\", 0777, true);'",
-            "php -r 'chdir(__DIR__.\"/httpdocs/shell/\"); @symlink(\"inventory_update.php\", \"inventory_update.php\");'"
+            "php -r 'chdir(__DIR__.\"/httpdocs/shell\"); @symlink(\"../../vendor/just4testing/magento-inventory-update/shell/inventory_update.php\", \"inventory_update.php\");'"
         ]
     },
     "require": {
