@@ -24,6 +24,8 @@ class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
     const STATUS_FLAG_GT = '+';
     const STATUS_FLAG_404 = '!';
 
+    protected $dryrun = false;
+
     protected static function _getStatusSymbol($old, $new)
     {
         $diff = (int) $new - (int) $old;
@@ -41,6 +43,11 @@ class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
     public function run()
     {
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+
+        // --dry-run
+        if (!empty($this->getArg('dry-run'))) {
+            $this->dryrun = true;
+        }
 
         // -f <csvfile>
         if (!is_string($csvfile = $this->getArg('f'))) {
@@ -65,7 +72,10 @@ class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
                 // in stock
                 $stockItem->setData('is_in_stock', ($qty > 0 ? 1 : 0));
 
-                //FIXME $stockItem->save();
+                if (!$this->dryrun) {
+                    $stockItem->save();
+                }
+
                 unset($stockItem);
 
                 printf("[%s] Inventory updated for product '%s'. (%d -> %d)\n",
@@ -93,6 +103,7 @@ class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
 Usage:  php {$argv[0]} -- [options]
 
     -f <file_path>         A CSV file with SKU and updates
+    --dry-run              Do not actually do anything on the underlying DB
 
     -h, help               This help
 
