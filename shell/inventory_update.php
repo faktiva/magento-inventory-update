@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 ini_set('log_errors', 1);
-ini_set('error_log', __DIR__.'/log/products_update.log');
+ini_set('error_log', __DIR__.'/var/log/products_update.log');
 
 require_once __DIR__.'/abstract.php';
 
@@ -19,10 +19,11 @@ class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
     const CSV_SKU_COLUMN = 0;
     const CSV_QTY_COLUMN = 1;
 
-    const STATUS_FLAG_LT = '-';
-    const STATUS_FLAG_EQ = '=';
-    const STATUS_FLAG_GT = '+';
-    const STATUS_FLAG_404 = '!';
+    const STATUS_FLAG_LT = '-';  // lower then
+    const STATUS_FLAG_EQ = '=';  // equal
+    const STATUS_FLAG_GT = '+';  // greater then
+    const STATUS_FLAG_404 = '?'; // not found
+    const STATUS_FLAG_405 = '!'; // not allowed
 
     protected $dryrun = false;
 
@@ -47,7 +48,9 @@ class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
         // --dry-run
         if (!empty($this->getArg('dry-run'))) {
             $this->dryrun = true;
+            echo "\n\n--> DRY-RUN: nothing will be actually done on the underlying DB <--";
         }
+        echo "\n\n";
 
         // -f <csvfile>
         if (!is_string($csvfile = $this->getArg('f'))) {
@@ -59,37 +62,44 @@ class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
             $sku = $line[self::CSV_SKU_COLUMN];
             $qty = $line[self::CSV_QTY_COLUMN];
 
+            if ($qty < 0) {
+                printf("[%s] Product '%s' has a negative new quantity (%d). Skipped.\n", self::STATUS_FLAG_405, $sku, $qty);
+                continue;
+            }
+
             $product = Mage::getModel('catalog/product')
                 ->loadByAttribute('sku', $sku);
-            if ($product) {
-                $stockItem = Mage::getModel('cataloginventory/stock_item')
+            if (!$product) {
+                printf("[%s] Product '%s' does not exists. Skipped.\n", self::STATUS_FLAG_404, $sku);
+                continue;
+            }
+            $stockItem = Mage::getModel('cataloginventory/stock_item')
                     ->loadByProduct($product);
 
-                // qty
-                $old_qty = $stockItem->getQty();
-                $stockItem->setData('qty', $qty);
+            // qty
+            $old_qty = $stockItem->getQty();
+            $stockItem->setData('qty', $qty);
+            // in stock
+            $stockItem->setData('is_in_stock', ($qty > 0 ? 1 : 0));
 
-                // in stock
-                $stockItem->setData('is_in_stock', ($qty > 0 ? 1 : 0));
+            if (!$this->dryrun) {
+                $stockItem->save(); // actually save to DB
+            }
 
-                if (!$this->dryrun) {
-                    $stockItem->save();
-                }
-
-                unset($stockItem);
-
-                printf("[%s] Inventory updated for product '%s'. (%d -> %d)\n",
+            printf("[%s] Inventory updated for product '%s'. (%d -> %d)\n",
                     self::_getStatusSymbol($old_qty, $qty),
                     $sku,
                     $old_qty,
                     $qty
-                );
-            } else {
-                printf("[%s] Product '%s' does not exists. Skipped.\n", self::STATUS_FLAG_404, $sku);
-            }
+            );
+
+            $product->clearInstance();
             unset($product);
+            $stockItem->clearInstance();
+            unset($stockItem);
         }
         fclose($fh);
+        echo "\n";
     }
 
     /**
