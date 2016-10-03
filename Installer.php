@@ -9,7 +9,7 @@ class Installer
     public static function install(Event $event)
     {
         $extras = $event->getComposer()->getPackage()->getExtra();
-        if ( empty($extras['magento-scripts-dir']) ) {
+        if (empty($extras['magento-scripts-dir'])) {
             throw new \Exception('Missing "magento-scripts-dir" in composer.json "extra"');
         }
         $install_dir = $extras['magento-scripts-dir'];

@@ -19,6 +19,22 @@ class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
     const CSV_SKU_COLUMN = 0;
     const CSV_QTY_COLUMN = 1;
 
+    const STATUS_FLAG_LT = '-';
+    const STATUS_FLAG_EQ = '=';
+    const STATUS_FLAG_GT = '+';
+    const STATUS_FLAG_404 = '!';
+
+    protected static function _getStatusSymbol($old, $new)
+    {
+        $diff = (int) $new - (int) $old;
+
+        if (0 === $diff) {
+            return self::STATUS_FLAG_EQ;
+        }
+
+        return ($diff > 0) ? self::STATUS_FLAG_GT : self::STATUS_FLAG_LT;
+    }
+
     /**
      * Run script.
      */
@@ -52,9 +68,14 @@ class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
                 //FIXME $stockItem->save();
                 unset($stockItem);
 
-                printf("Inventory updated for product '%s' [%d -> %d]\n", $sku, $old_qty, $qty);
+                printf("[%s] Inventory updated for product '%s'. (%d -> %d)\n",
+                    self::_getStatusSymbol($old_qty, $qty),
+                    $sku,
+                    $old_qty,
+                    $qty
+                );
             } else {
-                printf("Product '%s' does not exists. Skipped.\n", $sku);
+                printf("[%s] Product '%s' does not exists. Skipped.\n", self::STATUS_FLAG_404, $sku);
             }
             unset($product);
         }
