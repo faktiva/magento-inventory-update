@@ -18,7 +18,7 @@ Add the following to your composer.json
         "magento-scripts-dir": "httpdocs/shell"
     }
 ```
-Then run `composer update` and `composer install` to have the script installed in the Magento "_`shell`_" dir, indicated by "__magento-scripts-dir__".
+Then run `composer install` to have the script installed in the Magento "_`shell`_" dir, indicated by "__magento-scripts-dir__".
 
 ### manually
 Simply download the `shell/inventory_update.php` script in the Magento "_`shell`_" dir. Get it from the [latest release](https://github.com/faktiva/magento-inventory-update/releases/latest)
