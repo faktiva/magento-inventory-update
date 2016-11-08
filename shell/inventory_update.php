@@ -45,7 +45,7 @@ class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
 
     protected $dryrun = false;
 
-    protected static function _getStatusSymbol($old, $new)
+    protected static function getStatusSymbol($old, $new)
     {
         $diff = (int) $new - (int) $old;
 
@@ -105,7 +105,7 @@ class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
             }
 
             printf("[%s] Inventory updated for product '%s'. (%d -> %d)\n",
-                    self::_getStatusSymbol($old_qty, $qty),
+                    self::getStatusSymbol($old_qty, $qty),
                     $sku,
                     $old_qty,
                     $qty
