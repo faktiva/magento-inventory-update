@@ -1,0 +1,6 @@
+rules:
+    php.use_exit_function:
+        enabled: true
+        ignore_files: [shell/inventory_update.php]
+    php.dynamically_change_configuration:
+        enabled: false
