@@ -46,7 +46,7 @@ class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
         // --dry-run
-        if (!empty($this->getArg('dry-run'))) {
+        if (''!=$this->getArg('dry-run')) {
             $this->dryrun = true;
             echo "\n\n--> DRY-RUN: nothing will be actually done on the underlying DB <--";
         }
