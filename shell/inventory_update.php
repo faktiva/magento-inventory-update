@@ -125,10 +125,8 @@ class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
      */
     public function usageHelp()
     {
-        global $argv;
-
         return <<<USAGE
-Usage:  php {$argv[0]} -- [options]
+Usage:  php {$_SERVER['argv'][0]} -- [options]
 
     -f <file_path>         A CSV file with SKU and updates
     --dry-run              Do not actually do anything on the underlying DB
