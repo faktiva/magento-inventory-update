@@ -1,5 +1,23 @@
 <?php
 
+/*
+ * This file is part of the Faktiva "Magento inventory update" package.
+ *
+ * (c) Faktiva (http://faktiva.com)
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the CC BY-SA 4.0 license that is
+ * available at the URL https://creativecommons.org/licenses/by-sa/4.0/
+ *
+ * DISCLAIMER
+ * This code is provided as is without any warranty.
+ * No promise of being safe or secure
+ *
+ * @author   Emiliano 'AlberT' Gabrielli <albert@faktiva.com>
+ * @license  https://creativecommons.org/licenses/by-sa/4.0/  CC-BY-SA-4.0
+ * @source   https://github.com/faktiva/php-admin-tk
+ */
+
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 ini_set('log_errors', 1);
@@ -46,7 +64,7 @@ class Faktiva_Shell_Inventory_Update extends Mage_Shell_Abstract
         Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
         // --dry-run
-        if (''!=$this->getArg('dry-run')) {
+        if ('' != $this->getArg('dry-run')) {
             $this->dryrun = true;
             echo "\n\n--> DRY-RUN: nothing will be actually done on the underlying DB <--";
         }
