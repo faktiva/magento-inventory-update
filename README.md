@@ -8,7 +8,7 @@
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/faktiva/magento-inventory-update.svg?style=flat)](http://isitmaintained.com/project/faktiva/magento-inventory-update "Average time to resolve an issue")
 [![composer.lock](https://poser.pugx.org/faktiva/magento-inventory-update/composerlock?style=flat)](https://packagist.org/packages/faktiva/magento-inventory-update)
 [![Dependencies Status](https://img.shields.io/librariesio/github/faktiva/magento-inventory-update.svg?maxAge=3600&style=flat)](https://libraries.io/github/faktiva/magento-inventory-update)
-[![License](https://img.shields.io/packagist/l/faktiva/magento-inventory-update.svg?style=flat)](https://creativecommons.org/licenses/by-sa/4.0/)
+[![License](https://img.shields.io/packagist/l/faktiva/magento-inventory-update.svg?style=flat)](https://tldrlegal.com/license/mit-license)
 
 [![Join the chat at https://gitter.im/faktiva/magento-inventory-update](https://img.shields.io/badge/Gitter-CHAT%20NOW-brightgreen.svg?style=flat)](https://gitter.im/faktiva/magento-inventory-update)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/faktiva/magento-inventory-update.svg?style=social)](https://twitter.com/intent/tweet?text=See this "%23Magento inventory update" script from %23Faktiva&url=https://github.com/faktiva/magento-inventory-update)

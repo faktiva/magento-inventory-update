@@ -2,15 +2,21 @@
     "name": "faktiva/magento-inventory-update",
     "description": "A simple Magento shell script to update products attributes such as quantity, availability and so on",
     "homepage": "https://github.com/faktiva/magento-inventory-update",
-    "license": "CC-BY-SA-4.0",
+    "license": "MIT",
     "type": "project",
     "authors": [
         {
             "name": "Emiliano 'AlberT' Gabrielli",
             "email": "albert@faktiva.com",
+            "homepage": "http://faktiva.com",
             "role": "Developer"
         }
     ],
+    "support": {
+        "issues": "https://github.com/faktiva/magento-inventory-update/issues",
+        "source": "https://github.com/faktiva/magento-inventory-update/releases/latest",
+        "email": "support@faktiva.com"
+    },
     "minimum-stability": "stable",
 	"config": {
         "bin-dir": "bin",
@@ -24,31 +30,31 @@
     },
 	"require-dev": {
         "friendsofphp/php-cs-fixer": "^1.12",
+        "sensiolabs/security-checker": "^4.0",
         "symfony/var-dumper": "^2.8 || ^3.0",
-        "symfony/debug": "^2.8 || ^3.0",
-        "sensiolabs/security-checker": "^4.0"
+        "symfony/debug": "^2.8 || ^3.0"
     },
     "require": {
         "php": ">=5.4.0"
     },
-    "autoload": {
-        "psr-4": {
-            "Faktiva\\MagentoInventoryUpdate\\": ""
-        }
-    },
 	"scripts": {
         "chk-cs": [
-            "bin/php-cs-fixer -vvv fix --dry-run"
+            "php bin/php-cs-fixer -vvv fix --dry-run"
         ],
         "chk-sec": [
-            "bin/security-checker -vv security:check"
+            "php bin/security-checker -vv security:check"
         ],
         "check": [
             "@chk-cs",
             "@chk-sec"
         ],
         "fix-cs": [
-            "bin/php-cs-fixer -vvv fix"
+            "php bin/php-cs-fixer -vvv fix"
         ]
+    },
+    "autoload": {
+        "psr-4": {
+            "Faktiva\\MagentoInventoryUpdate\\": ""
+        }
 	}
 }
