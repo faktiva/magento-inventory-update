@@ -11,7 +11,7 @@
 [![License](https://img.shields.io/packagist/l/faktiva/magento-inventory-update.svg?style=flat)](https://tldrlegal.com/license/mit-license)
 
 [![Join the chat at https://gitter.im/faktiva/magento-inventory-update](https://img.shields.io/badge/Gitter-CHAT%20NOW-brightgreen.svg?style=flat)](https://gitter.im/faktiva/magento-inventory-update)
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/faktiva/magento-inventory-update.svg?style=social)](https://twitter.com/intent/tweet?text=See this "%23Magento inventory update" script from %23Faktiva&url=https://github.com/faktiva/magento-inventory-update)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/faktiva/magento-inventory-update.svg?style=social)](https://twitter.com/intent/tweet?text=See+this+"%23Magento+inventory+update"+script+from+%23Faktiva&url=https://github.com/faktiva/magento-inventory-update)
 
 ____
 
